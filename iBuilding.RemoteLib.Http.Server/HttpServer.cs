@@ -69,20 +69,16 @@ namespace RanOpt.Common.RemoteLib.Http.Server
             var listener = (HttpListener)result.AsyncState;
             var context = listener.EndGetContext(result);
             PrintRequestInfo(context.Request);
-            if (Responses.Count > 0)
+            var responsed = false;
+            foreach (var httpResponse in Responses)
             {
-                foreach (var httpResponse in Responses)
-                {
-                    var responsed = false;
-                    httpResponse.Response(context, ref responsed);
-                    if (responsed)
-                        break;
-                }
+                httpResponse.Response(context, ref responsed);
+                if (responsed)
+                    break;
             }
-            else
-            {
+            //如果没有响应
+            if (!responsed)
                 ProcessHelloResponse(context.Response);
-            }
         }
 
         private void ProcessHelloResponse(HttpListenerResponse response)
