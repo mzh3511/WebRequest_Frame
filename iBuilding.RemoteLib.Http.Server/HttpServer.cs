@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace RanOpt.Common.RemoteLib.Http.Server
@@ -9,6 +10,16 @@ namespace RanOpt.Common.RemoteLib.Http.Server
     public class HttpServer : IDisposable
     {
         private bool _isDisposed;
+
+        /// <summary>
+        /// 服务器名称
+        /// </summary>
+        public string Name { get; set; } = "Zhenhua's http server";
+
+        /// <summary>
+        /// 响应列表
+        /// </summary>
+        public List<IHttpResponse> Responses { get; } = new List<IHttpResponse>();
 
         /// <summary>
         /// Default ServerCore class constructor.
@@ -57,22 +68,30 @@ namespace RanOpt.Common.RemoteLib.Http.Server
         {
             var listener = (HttpListener)result.AsyncState;
             var context = listener.EndGetContext(result);
-            var request = context.Request;
-            PrintRequestInfo(request);
-            // handle request
-            //_processor.Process(context);
-            var response = context.Response;
-            ProcessHelloResponse(response);
-            context.Response.Close();
+            PrintRequestInfo(context.Request);
+            if (Responses.Count > 0)
+            {
+                foreach (var httpResponse in Responses)
+                {
+                    var responsed = false;
+                    httpResponse.Response(context, ref responsed);
+                    if (responsed)
+                        break;
+                }
+            }
+            else
+            {
+                ProcessHelloResponse(context.Response);
+            }
         }
 
         private void ProcessHelloResponse(HttpListenerResponse response)
         {
             // 构造回应内容
-            var responseString
-                = @"<html>
-                <head><title>From HttpListener Server</title></head>
-                <body><h1>Hello, world.</h1></body>
+            var responseString =
+                $@"<html>
+                <head><title>From {Name}</title></head>
+                <body><h1>Hello, here is {Name}, may I help you?</h1></body>
             </html>";
             // 设置回应头部内容，长度，编码
             response.ContentLength64
@@ -88,8 +107,8 @@ namespace RanOpt.Common.RemoteLib.Http.Server
 
         private void PrintCopyright()
         {
-            Console.WriteLine($"Zhenhua's http server (c) 2016-{DateTime.Now.Year}");
-            Console.WriteLine($"Zhenhua's http server is running on {49152} port");
+            Console.WriteLine($"{Name} (c) 2016-{DateTime.Now.Year}");
+            Console.WriteLine($"{Name} is running on {49152} port");
         }
 
         private void PrintRequestInfo(HttpListenerRequest request)
