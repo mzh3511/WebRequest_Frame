@@ -33,8 +33,12 @@
             this.txtResult = new System.Windows.Forms.RichTextBox();
             this.grpxHttp = new System.Windows.Forms.GroupBox();
             this.grpxResult = new System.Windows.Forms.GroupBox();
+            this.grpxFtp = new System.Windows.Forms.GroupBox();
+            this.btnFtpRequest = new System.Windows.Forms.Button();
+            this.txtFtpUrl = new System.Windows.Forms.TextBox();
             this.grpxHttp.SuspendLayout();
             this.grpxResult.SuspendLayout();
+            this.grpxFtp.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUrl
@@ -89,11 +93,42 @@
             this.grpxResult.TabStop = false;
             this.grpxResult.Text = "Result";
             // 
+            // grpxFtp
+            // 
+            this.grpxFtp.Controls.Add(this.btnFtpRequest);
+            this.grpxFtp.Controls.Add(this.txtFtpUrl);
+            this.grpxFtp.Location = new System.Drawing.Point(3, 100);
+            this.grpxFtp.Name = "grpxFtp";
+            this.grpxFtp.Size = new System.Drawing.Size(367, 91);
+            this.grpxFtp.TabIndex = 6;
+            this.grpxFtp.TabStop = false;
+            this.grpxFtp.Text = "Ftp";
+            // 
+            // btnFtpRequest
+            // 
+            this.btnFtpRequest.Location = new System.Drawing.Point(6, 64);
+            this.btnFtpRequest.Name = "btnFtpRequest";
+            this.btnFtpRequest.Size = new System.Drawing.Size(75, 23);
+            this.btnFtpRequest.TabIndex = 2;
+            this.btnFtpRequest.Text = "Request";
+            this.btnFtpRequest.UseVisualStyleBackColor = true;
+            this.btnFtpRequest.Click += new System.EventHandler(this.btnFtpRequest_Click);
+            // 
+            // txtFtpUrl
+            // 
+            this.txtFtpUrl.Location = new System.Drawing.Point(6, 15);
+            this.txtFtpUrl.Multiline = true;
+            this.txtFtpUrl.Name = "txtFtpUrl";
+            this.txtFtpUrl.Size = new System.Drawing.Size(355, 46);
+            this.txtFtpUrl.TabIndex = 1;
+            this.txtFtpUrl.Text = "ftp://127.0.0.1/";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 313);
+            this.Controls.Add(this.grpxFtp);
             this.Controls.Add(this.grpxResult);
             this.Controls.Add(this.grpxHttp);
             this.Name = "Form1";
@@ -101,6 +136,8 @@
             this.grpxHttp.ResumeLayout(false);
             this.grpxHttp.PerformLayout();
             this.grpxResult.ResumeLayout(false);
+            this.grpxFtp.ResumeLayout(false);
+            this.grpxFtp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -111,6 +148,9 @@
         private System.Windows.Forms.RichTextBox txtResult;
         private System.Windows.Forms.GroupBox grpxHttp;
         private System.Windows.Forms.GroupBox grpxResult;
+        private System.Windows.Forms.GroupBox grpxFtp;
+        private System.Windows.Forms.Button btnFtpRequest;
+        private System.Windows.Forms.TextBox txtFtpUrl;
     }
 }
 
