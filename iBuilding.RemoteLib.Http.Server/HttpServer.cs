@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Text;
 
 namespace RanOpt.Common.RemoteLib.Http.Server
 {
@@ -63,7 +65,6 @@ namespace RanOpt.Common.RemoteLib.Http.Server
             _isDisposed = true;
         }
 
-        // private
         private void ProcessCallback(IAsyncResult result)
         {
             var listener = (HttpListener)result.AsyncState;
@@ -78,27 +79,71 @@ namespace RanOpt.Common.RemoteLib.Http.Server
             }
             //如果没有响应
             if (!responsed)
-                ProcessHelloResponse(context.Response);
+                ProcessHelloResponse(context);
         }
 
-        private void ProcessHelloResponse(HttpListenerResponse response)
+        private void ProcessHelloResponse(HttpListenerContext context)
         {
+            var request = context.Request;
+            var response = context.Response;
+            var postData = string.Empty;
+            using (var reader = new StreamReader(request.InputStream, request.ContentEncoding))
+            {
+                postData = reader.ReadToEnd();
+            }
+            if (string.IsNullOrEmpty(postData))
+                postData = "empty";
+            var queryString = new StringBuilder();
+            foreach (var key in request.QueryString.AllKeys)
+            {
+                if (queryString.Length > 0)
+                    queryString.Append("&");
+                queryString.Append($"{key}={request.QueryString[key]}");
+            }
+            if (queryString.Length == 0)
+                queryString.Append("empty");
+
             // 构造回应内容
-            var responseString =
-                $@"<html>
-                <head><title>From {Name}</title></head>
-                <body><h1>Hello, here is {Name}, may I help you?</h1></body>
-            </html>";
+            var responseString = $@"
+<html>
+	<head><title>From {Name}</title></head>
+	<body>  
+		<h2>Hello, here is {Name}, may I help you?</h2>
+		<table align={"\"left\""} border={"\"1px\""} border-style={"\"solid\""}>
+            <tr>
+				<th width={"\"300px\""} align={"\"left\""}>Key</th>
+				<th width={"\"500px\""} align={"\"left\""}>Value</th>
+			</tr>
+			<tr>
+				<td width={"\"300px\""}> Http method</td>
+				<td width={"\"500px\""}>{request.HttpMethod}</td>
+			</tr>
+			<tr>
+				<td>Raw url</td>
+				<td>{request.RawUrl}</td>
+			</tr>
+			<tr>
+				<td>Post data</td>
+				<td>{postData}</td>
+			</tr>
+			<tr>
+				<td>Query string</td>
+				<td>{queryString}</td>
+			</tr>
+		</table>
+	</body>
+</html>";
+
             // 设置回应头部内容，长度，编码
-            response.ContentLength64
-                = System.Text.Encoding.UTF8.GetByteCount(responseString);
+            response.ContentLength64 = Encoding.UTF8.GetByteCount(responseString);
             response.ContentType = "text/html; charset=UTF-8";
             // 输出回应内容
             var output = response.OutputStream;
-            var writer = new System.IO.StreamWriter(output);
+            var writer = new StreamWriter(output);
             writer.Write(responseString);
             // 必须关闭输出流
             writer.Close();
+            Console.WriteLine("Response: Hello word");
         }
 
         private void PrintCopyright()
@@ -109,17 +154,18 @@ namespace RanOpt.Common.RemoteLib.Http.Server
 
         private void PrintRequestInfo(HttpListenerRequest request)
         {
-            Console.WriteLine($"{request.HttpMethod} {request.RawUrl} HTTP/{request.ProtocolVersion}");
+            Console.WriteLine();
+            Console.WriteLine($"HTTP/{request.ProtocolVersion}/{request.HttpMethod} {request.RawUrl}");
             //Console.WriteLine("Accept: {0}", request.AcceptTypes == null ? string.Empty : string.Join(", ", request.AcceptTypes));
             //Console.WriteLine("Accept-Language: {0}", request.UserLanguages == null ? string.Empty : string.Join(",", request.UserLanguages));
             //Console.WriteLine($"User-Agent: {request.UserAgent}");
-            Console.WriteLine("Connection: {0}", request.KeepAlive ? "Keep-Alive" : "Close");
-            //Console.WriteLine("Host: {0}", request.UserHostName);
-            Console.WriteLine("Client: {0}", request.RemoteEndPoint);
-            foreach (var key in request.Headers.AllKeys)
-            {
-                Console.WriteLine($"{key}: {request.Headers[key]}");
-            }
+            //Console.WriteLine("Connection: {0}", request.KeepAlive ? "Keep-Alive" : "Close");
+            ////Console.WriteLine("Host: {0}", request.UserHostName);
+            //Console.WriteLine("Client: {0}", request.RemoteEndPoint);
+            //foreach (var key in request.Headers.AllKeys)
+            //{
+            //    Console.WriteLine($"{key}: {request.Headers[key]}");
+            //}
         }
     }
 }

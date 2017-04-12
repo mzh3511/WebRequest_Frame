@@ -16,6 +16,7 @@ namespace RanOpt.Common.RemoteLib.HttpServer
             }
             using (var server = new Http.Server.HttpServer())
             {
+                Console.Title = server.Name;
                 server.Run();
             }
 
@@ -42,11 +43,11 @@ namespace RanOpt.Common.RemoteLib.HttpServer
                 // 取得回应对象
                 var response = context.Response;
                 // 构造回应内容
-                var responseString
-                    = @"<html>
-                <head><title>From HttpListener Server</title></head>
-                <body><h1>Hello, world.</h1></body>
-            </html>";
+                var responseString = @"
+<html>
+	<head><title>From HttpListener Server</title></head>
+	<body><h1>Hello, world.</h1></body>
+</html>";
                 // 设置回应头部内容，长度，编码
                 response.ContentLength64
                     = System.Text.Encoding.UTF8.GetByteCount(responseString);

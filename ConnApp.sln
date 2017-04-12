@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.Ftp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.Http.Server", "iBuilding.RemoteLib.Http.Server\iBuilding.RemoteLib.Http.Server.csproj", "{4488CC2F-6CF0-448C-8BC0-7719E5F26C8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.Sync.Client", "iBuilding.RemoteLib.Sync.Client\iBuilding.RemoteLib.Sync.Client.csproj", "{C7AAF1FD-F5C2-4560-B427-4B75F234E16B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.Subversion.Client", "iBuilding.RemoteLib.Subversion.Client\iBuilding.RemoteLib.Subversion.Client.csproj", "{7537B7E7-5870-4004-8120-E2F71C3A13E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.CloudMocker", "iBuilding.RemoteLib.CloudMocker\iBuilding.RemoteLib.CloudMocker.csproj", "{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{4488CC2F-6CF0-448C-8BC0-7719E5F26C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4488CC2F-6CF0-448C-8BC0-7719E5F26C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4488CC2F-6CF0-448C-8BC0-7719E5F26C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AAF1FD-F5C2-4560-B427-4B75F234E16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AAF1FD-F5C2-4560-B427-4B75F234E16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AAF1FD-F5C2-4560-B427-4B75F234E16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AAF1FD-F5C2-4560-B427-4B75F234E16B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7537B7E7-5870-4004-8120-E2F71C3A13E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7537B7E7-5870-4004-8120-E2F71C3A13E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7537B7E7-5870-4004-8120-E2F71C3A13E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7537B7E7-5870-4004-8120-E2F71C3A13E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,6 @@ namespace RanOpt.Common.RemoteLib.Http.Client
             FtpWebRequest request = FtpWebRequest.Create($"ftp://127.0.01") as FtpWebRequest;
             request.Method = WebRequestMethods.Ftp.ListDirectory;
             FtpWebResponse response = request.GetResponse() as FtpWebResponse;
-            response.
         }
     }
 }
