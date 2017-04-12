@@ -155,7 +155,7 @@ namespace RanOpt.Common.RemoteLib.Http.Server
         private void PrintRequestInfo(HttpListenerRequest request)
         {
             Console.WriteLine();
-            Console.WriteLine($"HTTP/{request.ProtocolVersion}/{request.HttpMethod} {request.RawUrl}");
+            Console.WriteLine($"HTTP/{request.ProtocolVersion}/{request.HttpMethod} {request.Url}");
             //Console.WriteLine("Accept: {0}", request.AcceptTypes == null ? string.Empty : string.Join(", ", request.AcceptTypes));
             //Console.WriteLine("Accept-Language: {0}", request.UserLanguages == null ? string.Empty : string.Join(",", request.UserLanguages));
             //Console.WriteLine($"User-Agent: {request.UserAgent}");
