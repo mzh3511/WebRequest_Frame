@@ -14,6 +14,11 @@ namespace RanOpt.Common.RemoteLib.Http.Server
         private bool _isDisposed;
 
         /// <summary>
+        /// 服务器的端口
+        /// </summary>
+        public int Port { get; set; } = 49152;
+
+        /// <summary>
         /// 服务器名称
         /// </summary>
         public string Name { get; set; } = "Zhenhua's http server";
@@ -40,7 +45,7 @@ namespace RanOpt.Common.RemoteLib.Http.Server
 
             // initialize http listener
             var listener = new HttpListener();
-            listener.Prefixes.Add("http://+:49152/");  // TODO: https! http://stackoverflow.com/questions/11403333/httplistener-with-https-support
+            listener.Prefixes.Add($"http://+:{Port}/");  // TODO: https! http://stackoverflow.com/questions/11403333/httplistener-with-https-support
             listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
 
             // start listening
@@ -149,13 +154,13 @@ namespace RanOpt.Common.RemoteLib.Http.Server
         private void PrintCopyright()
         {
             Console.WriteLine($"{Name} (c) 2016-{DateTime.Now.Year}");
-            Console.WriteLine($"{Name} is running on {49152} port");
+            Console.WriteLine($"{Name} is running on {Port} port");
         }
 
         private void PrintRequestInfo(HttpListenerRequest request)
         {
             Console.WriteLine();
-            Console.WriteLine($"HTTP/{request.ProtocolVersion}/{request.HttpMethod} {request.Url}");
+            Console.WriteLine($"HTTP{request.ProtocolVersion}/{request.HttpMethod} {request.Url}");
             //Console.WriteLine("Accept: {0}", request.AcceptTypes == null ? string.Empty : string.Join(", ", request.AcceptTypes));
             //Console.WriteLine("Accept-Language: {0}", request.UserLanguages == null ? string.Empty : string.Join(",", request.UserLanguages));
             //Console.WriteLine($"User-Agent: {request.UserAgent}");

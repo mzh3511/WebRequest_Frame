@@ -27,13 +27,13 @@ namespace iBuilding.RemoteLib.CloudMocker
             if (string.IsNullOrEmpty(param.ProjectId))
                 param.ProjectId = DateTime.Now.ToFileTimeUtc().ToString();
             responsed = true;
-            var svnUrl = @"https://192.168.1.119:8443/svn/Test/" + param.ProjectId;
+            var svnUrl = @"svn://192.168.1.119/DB1/COMERICSS000001/" + param.ProjectId;
             var responseString = JsonConvert.SerializeObject(new RespSyncAuthParam
             {
                 ProjectId = param.ProjectId,
                 SyncServerUrl = svnUrl,
                 Username = "ibuildnet",
-                Password = "ranplan@123"
+                Password = "ranplan"
             });
 
             Console.WriteLine($"Response: {responseString}");

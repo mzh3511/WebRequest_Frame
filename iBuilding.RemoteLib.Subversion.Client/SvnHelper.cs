@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using SharpSvn;
 
@@ -159,15 +160,21 @@ namespace RanOpt.Common.RemoteLib.Subversion.Client
                         break;
                 }
             }
+
             var args = new SvnCommitArgs
             {
                 LogMessage = $"Commit by {Application.ProductName}, in {DateTime.Now.ToString("G")}"
             };
+            var sbReport = new StringBuilder();
+            var reporter = new SvnCommitReporter(args, sbReport) { LogAction = PrintLog };
+            reporter.InitializeBySvnNodes(nodes);
+
             SvnCommitResult result1;
-            svnResult = SvnClient.Commit(localTarget.FullPath, args, out result1);
+            svnResult = SvnClient.Commit(nodes.Select(cond => cond.FullPath).ToList(), args, out result1);
             PrintLog($"Commit, result = {svnResult}, revision = {result1?.Revision}");
             return svnResult;
         }
+
 
         public bool RemoteIsExist(SvnUriTarget remoteTarget)
         {
