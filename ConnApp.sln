@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.Subvers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBuilding.RemoteLib.CloudMocker", "iBuilding.RemoteLib.CloudMocker\iBuilding.RemoteLib.CloudMocker.csproj", "{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientApp", "HttpClientApp\HttpClientApp.csproj", "{7F5C068D-7876-46FC-8C21-7E89D0E449CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinServer", "OwinServer\OwinServer.csproj", "{8C9C75D3-6D43-492A-8B00-481CA53AC611}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF91AE9-425D-4A88-8EB2-3ECD797BEA91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5C068D-7876-46FC-8C21-7E89D0E449CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5C068D-7876-46FC-8C21-7E89D0E449CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5C068D-7876-46FC-8C21-7E89D0E449CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5C068D-7876-46FC-8C21-7E89D0E449CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9C75D3-6D43-492A-8B00-481CA53AC611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9C75D3-6D43-492A-8B00-481CA53AC611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9C75D3-6D43-492A-8B00-481CA53AC611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9C75D3-6D43-492A-8B00-481CA53AC611}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

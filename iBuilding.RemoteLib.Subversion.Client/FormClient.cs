@@ -53,6 +53,8 @@ namespace RanOpt.Common.RemoteLib.Subversion.Client
                     PostEncoding = Encoding.UTF8,
                     Postdata = JsonConvert.SerializeObject(new ReqSyncAuthParam { Username = CloudServerSetting.ServerUsername, Password = CloudServerSetting.ServerPassword, ProjectId = projectId })// $"Username={CloudServerSetting.ServerUsername}&Password={CloudServerSetting.ServerPassword}&ProjectId={projectId}"
                 };
+                var obj = Newtonsoft.Json.Linq.JObject.Parse(item.Postdata);
+
                 helper.PrintLog($"Request {item.Url}?{item.Postdata}");
 
                 var reqSvnResult = http.GetHtml(item);
