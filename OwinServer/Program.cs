@@ -9,6 +9,7 @@ namespace OwinServer
     {
         static void Main(string[] args)
         {
+            var aa = FireWallHelper.OpenPort(49152);
             //初始化StartOptions参数
             StartOptions options = new StartOptions();
 
