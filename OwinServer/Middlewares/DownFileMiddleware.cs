@@ -15,9 +15,9 @@ namespace OwinServer.Middlewares
         public override Task Invoke(IOwinContext context)
         {
             //中间件的实现代码
-            var downloadPath = new PathString("/download");
+            var path = new PathString("/download");
             //判断Request路径为/tick开头
-            if (!context.Request.Path.StartsWithSegments(downloadPath))
+            if (!context.Request.Path.StartsWithSegments(path))
                 return Next.Invoke(context);
 
             var filePath = @"E:\workGit\ExpCADForm.cs";

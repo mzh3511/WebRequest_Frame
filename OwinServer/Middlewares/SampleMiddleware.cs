@@ -22,9 +22,9 @@ namespace OwinServer.Middlewares
         public override Task Invoke(IOwinContext context)
         {
             //中间件的实现代码
-            PathString tickPath = new PathString("/tick");
+            PathString path = new PathString("/tick");
             //判断Request路径为/tick开头
-            if (context.Request.Path.StartsWithSegments(tickPath))
+            if (context.Request.Path.StartsWithSegments(path))
             {
                 string content = DateTime.Now.Ticks.ToString();
                 //输出答案--当前的Tick数字

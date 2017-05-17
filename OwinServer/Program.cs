@@ -14,7 +14,7 @@ namespace OwinServer
 
             //服务器Url设置
             options.Urls.Add("http://localhost:9000");
-            options.Urls.Add("http://192.168.1.115:8080");
+            options.Urls.Add("http://192.168.1.115:49152");
 
             //Server实现类库设置
             options.ServerFactory = "Microsoft.Owin.Host.HttpListener";
